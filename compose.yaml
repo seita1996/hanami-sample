@@ -1,12 +1,10 @@
-version: '3.1'
-
 services:
-  # Hanamiアプリケーションのサービス
   web:
     build: .
     working_dir: /app
     volumes:
       - ./myapp:/app
+      - bundle:/usr/local/bundle
     ports:
       - "2300:2300"
       - "9293:9293"
@@ -15,16 +13,17 @@ services:
       - db
     command: bundle exec hanami server
 
-  # PostgreSQLデータベースのサービス
   db:
-    image: postgres:latest
-    container_name: my_postgres_db
-    environment:
-      POSTGRES_DB: my_hanami_db
-      POSTGRES_USER: my_hanami_user
-      POSTGRES_PASSWORD: my_hanami_password
+    restart: always
+    image: mysql:8.0
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - mysql_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: root
+    ports:
+      - 3306:3306
 
 volumes:
-  postgres_data:
+  bundle:
+  mysql_data:
