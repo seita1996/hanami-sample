@@ -1,0 +1,30 @@
+version: '3.1'
+
+services:
+  # Hanamiアプリケーションのサービス
+  web:
+    build: .
+    working_dir: /app
+    volumes:
+      - ./myapp:/app
+    ports:
+      - "2300:2300"
+      - "9293:9293"
+    tty: true
+    depends_on:
+      - db
+    command: bundle exec hanami server
+
+  # PostgreSQLデータベースのサービス
+  db:
+    image: postgres:latest
+    container_name: my_postgres_db
+    environment:
+      POSTGRES_DB: my_hanami_db
+      POSTGRES_USER: my_hanami_user
+      POSTGRES_PASSWORD: my_hanami_password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
