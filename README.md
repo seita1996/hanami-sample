@@ -1,5 +1,9 @@
 # hamani sample
 
+[V2.0: Getting Started | Hanami Guides](https://guides.hanamirb.org/v2.0/introduction/getting-started/)
+
+=> Listing books test does not pass...
+
 ## start dev server
 
 ```
@@ -31,7 +35,7 @@ createdb bookshelf_test
 create .env
 
 ```
-DATABASE_URL=postgres://postgres:password@localhost:5432/bookshelf_development
+DATABASE_URL=postgres://postgres:password@db:5432/bookshelf_development
 ```
 
 ## test
