@@ -12,8 +12,8 @@ Hanami.app.register_provider :persistence, namespace: true do
     config = target["persistence.config"]
 
     config.auto_registration(
-      target.root.join("lib/bookshelf/persistence"),
-      namespace: "Bookshelf::Persistence"
+      target.root.join("lib/myapp/persistence"),
+      namespace: "Myapp::Persistence"
     )
 
     register "rom", ROM.container(config)

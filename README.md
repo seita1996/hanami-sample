@@ -41,5 +41,7 @@ DATABASE_URL=postgres://postgres:password@db:5432/bookshelf_development
 ## test
 
 ```
+HANAMI_ENV=test bundle exec rake db:migrate
 bundle exec rspec spec/requests/root_spec.rb
+bundle exec rspec spec/requests/books/index_spec.rb
 ```
